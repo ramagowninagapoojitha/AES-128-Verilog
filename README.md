@@ -75,7 +75,7 @@ Plaintext
 Inputs and Outputs
 Inputs
 | Signal  | Width | Description                |
-| ------- | ----- | -------------------------- |
+
 | clk     | 1     | System clock               |
 | rst     | 1     | Reset signal               |
 | start   | 1     | Start operation            |
@@ -84,7 +84,7 @@ Inputs
 | key     | 128   | AES key                    |
 Outputs
 | Signal   | Width | Description                 |
-| -------- | ----- | --------------------------- |
+
 | data_out | 128   | Ciphertext/Plaintext output |
 | done     | 1     | Operation complete flag     |
 
@@ -113,6 +113,8 @@ Expected Plaintext
 Simulation Results
 
 <img width="566" height="196" alt="output_transcript Window" src="https://github.com/user-attachments/assets/3092cc35-45ab-4f14-add5-7af4a1661323" />
+<img width="1594" height="477" alt="output_waveform" src="https://github.com/user-attachments/assets/63db9c38-fb0e-4e27-81dd-452fab2315fc" />
+
 
 How to Run
 
@@ -128,10 +130,12 @@ Expected Output
 
 ========== ENCRYPTION TEST ==========
 Ciphertext = 69c4e0d86a7b0430d8cdb78070b4c55a
+
 ENCRYPTION CORRECT
 
 ========== DECRYPTION TEST ==========
 Plaintext = 00112233445566778899aabbccddeeff
+
 DECRYPTION CORRECT
 
 
