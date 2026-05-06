@@ -40,53 +40,8 @@ Common input interface
 Shared AES key input
 Single output interface
 
-AES Encryption Flow
-
-Plaintext
-   ↓
-AddRoundKey
-   ↓
-SubBytes
-   ↓
-ShiftRows
-   ↓
-MixColumns
-   ↓
-AddRoundKey
-   ↓
-Ciphertext
 
 
-AES Decryption Flow
-Ciphertext
-   ↓
-AddRoundKey
-   ↓
-InvShiftRows
-   ↓
-InvSubBytes
-   ↓
-InvMixColumns
-   ↓
-AddRoundKey
-   ↓
-Plaintext
-
-Inputs and Outputs
-Inputs
-| Signal  | Width | Description                |
-
-| clk     | 1     | System clock               |
-| rst     | 1     | Reset signal               |
-| start   | 1     | Start operation            |
-| mode    | 1     | Encrypt/Decrypt select     |
-| data_in | 128   | Plaintext/Ciphertext input |
-| key     | 128   | AES key                    |
-Outputs
-| Signal   | Width | Description                 |
-
-| data_out | 128   | Ciphertext/Plaintext output |
-| done     | 1     | Operation complete flag     |
 
 
 Simulation Test Vectors
