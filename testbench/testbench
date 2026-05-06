@@ -1,0 +1,109 @@
+`timescale 1ns/1ps
+
+module AES_TOP_tb;
+
+reg clk;
+reg rst;
+reg start;
+reg mode;
+
+reg [127:0] data_in;
+reg [127:0] key;
+
+wire [127:0] data_out;
+wire done;
+
+
+
+AES_TOP uut (
+    .clk(clk),
+    .rst(rst),
+    .start(start),
+    .mode(mode),
+
+    .data_in(data_in),
+    .key(key),
+
+    .data_out(data_out),
+    .done(done)
+);
+
+
+
+always #5 clk = ~clk;
+
+
+
+initial begin
+
+    clk = 0;
+    rst = 1;
+    start = 0;
+    mode = 0;
+
+    #20;
+    rst = 0;
+
+    $display("========== ENCRYPTION TEST ==========");
+
+    mode = 0;
+
+    data_in = 128'h00112233445566778899aabbccddeeff;
+
+    key = 128'h000102030405060708090a0b0c0d0e0f;
+
+    #10;
+    start = 1;
+
+    #10;
+    start = 0;
+
+    wait(done);
+
+    #10;
+
+    $display("Ciphertext = %h", data_out);
+
+    if(data_out == 128'h69c4e0d86a7b0430d8cdb78070b4c55a)
+        $display("ENCRYPTION CORRECT");
+    else
+        $display("ENCRYPTION WRONG");
+
+        #20;
+    rst = 1;
+
+    #20;
+    rst = 0;
+
+    
+
+    $display("========== DECRYPTION TEST ==========");
+
+    mode = 1;
+
+    data_in = 128'h69c4e0d86a7b0430d8cdb78070b4c55a;
+
+    key = 128'h000102030405060708090a0b0c0d0e0f;
+
+    #10;
+    start = 1;
+
+    #10;
+    start = 0;
+
+    wait(done);
+
+    #10;
+
+    $display("Plaintext = %h", data_out);
+
+    if(data_out == 128'h00112233445566778899aabbccddeeff)
+        $display("DECRYPTION CORRECT");
+    else
+        $display("DECRYPTION WRONG");
+
+    $stop;
+
+end
+
+endmodule
